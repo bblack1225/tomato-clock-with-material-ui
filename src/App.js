@@ -11,39 +11,39 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const progressTypeConstant = {
   linear: 0,
-  circle: 1
+  circle: 1,
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      textAlign: "center"
-    }
+      textAlign: "center",
+    },
   },
   buttonGroup: {
     "& > button": {
-      margin: 5
-    }
+      margin: 5,
+    },
   },
   progressBar: {
     "&": {
-      marginTop: 5
-    }
+      marginTop: 5,
+    },
   },
   circle: {
-    strokeLinecap: "round"
-  }
+    strokeLinecap: "round",
+  },
 }));
 const totalSeconds = 25 * 60;
 export default function App() {
   const nodeRef = useRef(null);
   const [alertOpen, setAlertOpen] = useState(false);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(10);
+  const [minutes, setMinutes] = useState(25);
+  const [seconds, setSeconds] = useState(0);
   const [toggleGroup, setToggleGroup] = useState({
     isStart: false,
-    text: "Start"
+    text: "Start",
   });
   const [progress, setProgress] = useState(0);
   const [progressType, setProgressType] = useState(
@@ -65,7 +65,7 @@ export default function App() {
           setToggleGroup((prev) => ({
             ...prev,
             isStart: false,
-            text: "Start"
+            text: "Start",
           }));
           setMinutes(25);
           setSeconds(0);
@@ -88,7 +88,7 @@ export default function App() {
     setToggleGroup((prev) => ({
       ...prev,
       isStart: !prev.isStart,
-      text: prev.isStart ? "Start" : "Stop"
+      text: prev.isStart ? "Start" : "Stop",
     }));
   };
   const handleReset = () => {
@@ -134,7 +134,7 @@ export default function App() {
             value={progress}
             timetext={timeText}
             classes={{
-              circle: classes.circle
+              circle: classes.circle,
             }}
           />
         )}
