@@ -4,22 +4,23 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
+import TimeTypography from "../components/TimeTypography";
 
 const useStylesFacebook = makeStyles((theme) => ({
   root: {
-    position: "relative"
+    position: "relative",
   },
   bottom: {
-    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700]
+    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
   },
   top: {
     color: "#1a90ff",
     position: "absolute",
-    left: 0
+    left: 0,
   },
   circle: {
-    strokeLinecap: "round"
-  }
+    strokeLinecap: "round",
+  },
 }));
 function CircularProgressWithLabel(props) {
   const classes = useStylesFacebook();
@@ -35,7 +36,7 @@ function CircularProgressWithLabel(props) {
       <CircularProgress
         className={classes.top}
         classes={{
-          circle: classes.circle
+          circle: classes.circle,
         }}
         color="secondary"
         variant="determinate"
@@ -51,9 +52,7 @@ function CircularProgressWithLabel(props) {
         alignItems="center"
         justifyContent="center"
       >
-        <Typography variant="h5" component="div" color="secondary">
-          {props.timetext}
-        </Typography>
+        <TimeTypography value={props.timetext} />
       </Box>
     </Box>
   );
@@ -64,7 +63,7 @@ CircularProgressWithLabel.propTypes = {
    * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    */
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 export default CircularProgressWithLabel;

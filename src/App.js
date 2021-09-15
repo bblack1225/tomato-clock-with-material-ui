@@ -8,6 +8,7 @@ import Alert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
 import CloseIcon from "@material-ui/icons/Close";
+import TimeTypography from "./components/TimeTypography";
 
 const progressTypeConstant = {
   linear: 0,
@@ -29,10 +30,17 @@ const useStyles = makeStyles((theme) => ({
   progressBar: {
     "&": {
       marginTop: 5,
+      height: 100,
     },
   },
   circle: {
     strokeLinecap: "round",
+  },
+  linearProgress: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    paddingTop: 25,
   },
 }));
 const totalSeconds = 25 * 60;
@@ -122,12 +130,10 @@ export default function App() {
       </Collapse>
       <div className={classes.progressBar}>
         {progressType ? (
-          <>
-            <Typography variant="h5" component="div" color="secondary">
-              {timeText}
-            </Typography>
+          <div className={classes.linearProgress}>
+            <TimeTypography value={timeText} />
             <BorderLinearProgress variant="determinate" value={progress} />
-          </>
+          </div>
         ) : (
           <CircularProgressWithLabel
             size={100}
@@ -156,7 +162,7 @@ export default function App() {
           color="primary"
           onClick={handleProgressType}
         >
-          Progress Type
+          Progress
         </Button>
       </div>
     </div>

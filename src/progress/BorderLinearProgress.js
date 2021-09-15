@@ -4,16 +4,17 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    marginTop: 10,
   },
   colorPrimary: {
     backgroundColor:
-      theme.palette.grey[theme.palette.type === "light" ? 200 : 700]
+      theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: "#1a90ff"
-  }
+    backgroundColor: "#1a90ff",
+  },
 }))(LinearProgress);
 
 export default BorderLinearProgress;
