@@ -95,13 +95,9 @@ const Clock = () => {
       text: prev.isStart ? "Start" : "Stop",
     }));
   };
-  const handleReset = () => {
-    setTimeLeft(initialTimerState);
-  };
+  const handleReset = () => setTimeLeft(initialTimerState);
 
-  const handleProgressType = () => {
-    setProgressType((prev) => !prev);
-  };
+  const handleProgressType = () => setProgressType((prev) => !prev);
   return (
     <div className={classes.root} ref={nodeRef}>
       <Collapse in={alertOpen}>
