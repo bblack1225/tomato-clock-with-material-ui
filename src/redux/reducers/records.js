@@ -10,9 +10,18 @@ const records = (state = [], action) => {
       ];
     }
 
-    case "PAUSE":
+    case "PAUSE": {
+      const { payload } = action;
+      return [
+        ...state,
+        {
+          pauseTime: payload.pauseTime,
+        },
+      ];
+    }
     case "RESET":
-    case "DONE":
+    case "DONE": {
+    }
     default:
       return state;
   }

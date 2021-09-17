@@ -1,44 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress, {
+  circularProgressClasses,
+} from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import TimeTypography from "../commonComponents/TimeTypography";
 
-const useStylesFacebook = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-  },
-  bottom: {
-    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
-  },
-  top: {
-    color: "#1a90ff",
-    position: "absolute",
-    left: 0,
-  },
-  circle: {
-    strokeLinecap: "round",
-  },
-}));
 function CircularProgressWithLabel(props) {
-  const classes = useStylesFacebook();
   return (
-    <Box position="relative" display="inline-flex">
+    <Box sx={{ position: "relative" }} display="inline-flex">
       <CircularProgress
         variant="determinate"
-        className={classes.bottom}
+        sx={{
+          color: (theme) =>
+            theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+        }}
+        size={40}
         thickness={4}
         {...props}
         value={100}
       />
       <CircularProgress
-        className={classes.top}
-        classes={{
-          circle: classes.circle,
-        }}
-        color="secondary"
         variant="determinate"
+        sx={{
+          color: (theme) =>
+            theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
+          position: "absolute",
+          left: 0,
+          [`& .${circularProgressClasses.circle}`]: {
+            strokeLinecap: "round",
+          },
+        }}
         {...props}
       />
       <Box

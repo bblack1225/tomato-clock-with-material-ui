@@ -1,20 +1,19 @@
-import { withStyles } from "@material-ui/core/styles";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
+import { styled } from "@mui/material/styles";
 
-const BorderLinearProgress = withStyles((theme) => ({
-  root: {
-    height: 10,
-    borderRadius: 5,
-    marginTop: 10,
-  },
-  colorPrimary: {
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor:
-      theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
-  bar: {
+  [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: "#1a90ff",
+    backgroundColor: theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
   },
-}))(LinearProgress);
+}));
 
 export default BorderLinearProgress;

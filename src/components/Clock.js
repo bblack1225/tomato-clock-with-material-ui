@@ -1,23 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "@mui/styles";
 import CircularProgressWithLabel from "../progress/CircularProgressWithLabel";
 import BorderLinearProgress from "../progress/BorderLinearProgress";
-import Alert from "@material-ui/lab/Alert";
-import IconButton from "@material-ui/core/IconButton";
-import Collapse from "@material-ui/core/Collapse";
-import CloseIcon from "@material-ui/icons/Close";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
 import { progressTypeConstant } from "../constants/progressType";
 import TimeTypography from "../commonComponents/TimeTypography";
 import { getTimeText } from "../libs/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../redux";
+import CloseIcon from "@mui/icons-material/Close";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
       textAlign: "center",
     },
   },
@@ -68,7 +67,7 @@ const Clock = () => {
   const timeText = getTimeText(timeLeft);
   const state = useSelector((state) => state.records);
   const dispatch = useDispatch();
-  const { startTime } = bindActionCreators(actionCreators, dispatch);
+  const { startTime, pauseTime } = bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     if (toggleGroup.isStart) {
@@ -101,7 +100,9 @@ const Clock = () => {
       isStart: !prev.isStart,
       text: prev.isStart ? "Start" : "Stop",
     }));
-    startTime({ startTime: timeText });
+    toggleGroup.isStart
+      ? pauseTime({ pauseTime: timeText })
+      : startTime({ startTime: timeText });
   };
   const handleReset = () => setTimeLeft(initialTimerState);
 
