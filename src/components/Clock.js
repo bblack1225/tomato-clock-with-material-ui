@@ -10,6 +10,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import { progressTypeConstant } from "../constants/progressType";
 import TimeTypography from "../commonComponents/TimeTypography";
 import { getTimeText } from "../libs/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +66,10 @@ const Clock = () => {
   );
   const classes = useStyles();
   const timeText = getTimeText(timeLeft);
+  const state = useSelector((state) => state.records);
+  const dispatch = useDispatch();
+  const { startTime } = bindActionCreators(actionCreators, dispatch);
+
   useEffect(() => {
     if (toggleGroup.isStart) {
       const timer = setInterval(() => {
@@ -94,6 +101,7 @@ const Clock = () => {
       isStart: !prev.isStart,
       text: prev.isStart ? "Start" : "Stop",
     }));
+    startTime({ startTime: timeText });
   };
   const handleReset = () => setTimeLeft(initialTimerState);
 
